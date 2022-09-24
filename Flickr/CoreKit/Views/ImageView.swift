@@ -13,11 +13,15 @@ struct ImageView: View {
     
     var body: some View {
         AsyncImage(url: url) { image in
-            image
-                .resizable()
+            VStack {
+                image
+                    .resizable()
+            }
         } placeholder: {
-            Image(systemName: "photo")
-                .resizable()
+            VStack {
+                Image(systemName: "photo")
+                    .resizable()
+            }
         }
     }
 }

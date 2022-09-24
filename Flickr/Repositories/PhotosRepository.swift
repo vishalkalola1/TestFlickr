@@ -8,8 +8,8 @@
 import Foundation
 
 protocol PhotosRepositoryProtocol {
-    typealias PhotosResultHandler = (Result<PhotosResult, LocalError>) -> Void
-    func searchPhotos(by page: Int, completion: @escaping PhotosResultHandler)
+    typealias PhotosResultHandler = (Result<Photos?, Error>) -> Void
+    func searchPhotos(by page: Int, title: String, completion: @escaping PhotosResultHandler)
 }
 
 struct PhotosRepository: PhotosRepositoryProtocol {
@@ -20,16 +20,21 @@ struct PhotosRepository: PhotosRepositoryProtocol {
         self.networkProvider = networkProvider
     }
     
-    func searchPhotos(by page: Int, completion: @escaping PhotosResultHandler) {
-        let searchServices = PhotosService(page: page)
+    func searchPhotos(by page: Int, title: String, completion: @escaping PhotosResultHandler) {
+        let searchServices = PhotosService(page: page, title: title)
         searchPhotos(service: searchServices, completion: completion)
     }
 }
 
 private extension PhotosRepository {
     func searchPhotos(service: NetworkService, completion: @escaping PhotosResultHandler) {
-        networkProvider.request(dataType: PhotosResult.self, service: service, onQueue: .main) { result in
-            completion(result)
+        networkProvider.request(dataType: PhotosResult.self, service: service, onQueue: .main) { results in
+            do {
+                let photosResult = try results.get()
+                completion(.success(photosResult.photos))
+            } catch {
+                completion(.failure(error))
+            }
         }
     }
 }

@@ -25,6 +25,7 @@
 		C9C989B328DCF03E00DBCA52 /* SearchPhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C989B128DCF03E00DBCA52 /* SearchPhotosView.swift */; };
 		C9C989CC28DCF05D00DBCA52 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C989C128DCF05D00DBCA52 /* ImageView.swift */; };
 		C9D13E6F28DF365F002DC04F /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D13E6E28DF365F002DC04F /* Navigation.swift */; };
+		C9D69DE228DF6046003F67AD /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D69DE128DF6046003F67AD /* View+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		C9C989B128DCF03E00DBCA52 /* SearchPhotosView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPhotosView.swift; sourceTree = "<group>"; };
 		C9C989C128DCF05D00DBCA52 /* ImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		C9D13E6E28DF365F002DC04F /* Navigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
+		C9D69DE128DF6046003F67AD /* View+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 		C9C989B428DCF05D00DBCA52 /* CoreKit */ = {
 			isa = PBXGroup;
 			children = (
+				C9D69DE028DF6046003F67AD /* View+Extensions */,
 				C9C989B728DCF05D00DBCA52 /* Views */,
 			);
 			path = CoreKit;
@@ -163,6 +166,14 @@
 				C9C989C128DCF05D00DBCA52 /* ImageView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		C9D69DE028DF6046003F67AD /* View+Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C9D69DE128DF6046003F67AD /* View+Extensions.swift */,
+			);
+			path = "View+Extensions";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -181,6 +192,8 @@
 			dependencies = (
 			);
 			name = Flickr;
+			packageProductDependencies = (
+			);
 			productName = Flickr;
 			productReference = C9C9898428DCE16700DBCA52 /* Flickr.app */;
 			productType = "com.apple.product-type.application";
@@ -209,6 +222,8 @@
 				Base,
 			);
 			mainGroup = C9C9897B28DCE16700DBCA52;
+			packageReferences = (
+			);
 			productRefGroup = C9C9898528DCE16700DBCA52 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -242,6 +257,7 @@
 				C9C989A628DCF01B00DBCA52 /* PhotosRepository.swift in Sources */,
 				C9C9898828DCE16700DBCA52 /* FlickrApp.swift in Sources */,
 				C9C989B328DCF03E00DBCA52 /* SearchPhotosView.swift in Sources */,
+				C9D69DE228DF6046003F67AD /* View+Extensions.swift in Sources */,
 				C9C989B228DCF03E00DBCA52 /* SearchPhotosViewModel.swift in Sources */,
 				C9C9899F28DCF00200DBCA52 /* Error.swift in Sources */,
 				C9C989A328DCF00200DBCA52 /* SessionProtocol.swift in Sources */,
@@ -379,13 +395,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Flickr/Preview Content\"";
+				DEVELOPMENT_TEAM = SVKXCL5QB5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -407,13 +425,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Flickr/Preview Content\"";
+				DEVELOPMENT_TEAM = SVKXCL5QB5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

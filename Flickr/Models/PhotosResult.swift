@@ -14,20 +14,25 @@ struct PhotosResult: Codable {
 
 struct Photos: Codable {
     let page: Int?
-    let pages: String?
+    let pages: Int?
     let perpage: Int?
-    let total: String?
+    let total: Int?
     let photo: [Photo]?
 }
 
-struct Photo: Codable {
+struct Photo: Codable, Identifiable {
     let id: String?
     let owner: String?
     let secret: String?
     let server: String?
     let farm: Int?
     let title: String?
-    let ispublic: Bool?
-    let isfriend: Bool?
-    let isfamily: Bool?
+    let ispublic: Int?
+    let isfriend: Int?
+    let isfamily: Int?
+    
+    var url: URL? {
+        guard let farm = farm, let server = server, let id = id, let secret = secret else { return nil }
+        return URL(string: "https://farm\(farm).static.flickr.com/\(server)/\(id)_\(secret).jpg")!
+    }
 }

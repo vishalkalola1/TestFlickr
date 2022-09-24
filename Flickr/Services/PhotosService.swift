@@ -26,14 +26,14 @@ struct PhotosService: NetworkService {
     }
     
     var queryParameters: [URLQueryItem]? {
-        [URLQueryItem(name: "method", value: path),
+        [URLQueryItem(name: "method", value: "flickr.photos.search"),
          URLQueryItem(name: "api_key", value: CommonMovieService.apiKey),
          URLQueryItem(name: "format", value: CommonMovieService.formate),
          URLQueryItem(name: "nojsoncallback", value: CommonMovieService.nojsoncallback),
-         URLQueryItem(name: "auth_token", value: CommonMovieService.authToken),
-         URLQueryItem(name: "api_sig", value: CommonMovieService.apiSig),
          URLQueryItem(name: "per_page", value: "100"),
-         URLQueryItem(name: "page", value: "\(page)")]
+         URLQueryItem(name: "media", value: "photos"),
+         URLQueryItem(name: "page", value: "\(page)"),
+         URLQueryItem(name: "text", value: title)]
     }
     
     var timeout: TimeInterval? {
@@ -41,12 +41,14 @@ struct PhotosService: NetworkService {
     }
     
     var path: String {
-        "flickr.photos.search"
+        ""
     }
     
     private var page: Int
+    private var title: String
     
-    internal init(page: Int) {
+    internal init(page: Int, title: String) {
         self.page = page
+        self.title = title
     }
 }

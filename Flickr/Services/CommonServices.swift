@@ -10,19 +10,11 @@ import Foundation
 enum CommonMovieService {
     
     static var baseURL: String {
-        "https://www.flickr.com/services/rest/"
+        "https://www.flickr.com/services/rest"
     }
 
     static var apiKey: String {
-        "1011eebe1638a23ce9e0a70d5b44a70d"
-    }
-    
-    static var authToken: String {
-        "72157720858437440-084ab17823ee0420"
-    }
-    
-    static var apiSig: String {
-        "e53a29fa62498c78b18c8b8024c2bd06"
+        "86860772a5b7baf5c70156a3934e55cb"
     }
     
     static var formate: String {
