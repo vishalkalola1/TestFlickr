@@ -1,6 +1,6 @@
 //
 //  NetworkProvider.swift
-//  Locale
+//  NetworkProvider
 //
 //  Created by Vishal on 8/18/22.
 //

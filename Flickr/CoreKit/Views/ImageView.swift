@@ -1,8 +1,8 @@
 //
-//  ImageView.swift
-//  Locale
+//  FlickrApp.swift
+//  Flickr
 //
-//  Created by vishal on 8/21/22.
+//  Created by vishal on 9/22/22.
 //
 
 import SwiftUI

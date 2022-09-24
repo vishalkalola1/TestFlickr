@@ -1,8 +1,8 @@
 //
-//  MovieService.swift
-//  Movies
+//  FlickrApp.swift
+//  Flickr
 //
-//  Created by xdmgzdev on 14/04/2021.
+//  Created by vishal on 9/22/22.
 //
 
 import Foundation
