@@ -35,7 +35,7 @@ struct SearchPhotosView: View {
     var searchField: some View {
         TextField("Search here....", text: $queryString)
             .onSubmit {
-                viewModel.seachText(queryString)
+                viewModel.searchText(queryString)
             }
             .focused($isTextFieldFocused)
             .padding(8)
@@ -48,7 +48,7 @@ struct SearchPhotosView: View {
                 ForEach(viewModel.photos, id: \.id) { item in
                     ImageView(url: item.url)
                         .onAppear {
-                            self.viewModel.loadMoreMovies(currentItem: item, text: queryString)
+                            self.viewModel.loadMorePhotos(currentItem: item, text: queryString)
                         }
                 }
             }
@@ -72,7 +72,7 @@ struct SearchPhotosView: View {
                             .onTapGesture {
                                 queryString = item
                                 isTextFieldFocused = false
-                                viewModel.seachText(queryString)
+                                viewModel.searchText(queryString)
                             }
                     }
                 }

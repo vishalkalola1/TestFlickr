@@ -16,6 +16,11 @@ final class SearchPhotosViewModelTests: XCTestCase {
         viewModel = SearchPhotosViewModel()
     }
     
+    override func tearDown() {
+        super.tearDown()
+        viewModel = nil
+    }
+    
     func testTitle() {
         // Given
         let expectedTitle = "Search Photos"
@@ -27,7 +32,7 @@ final class SearchPhotosViewModelTests: XCTestCase {
         XCTAssertEqual(actualTitle, expectedTitle)
     }
     
-    func testPhotos() {
+    func testPhotosCount() {
         // Given
         let expectedCount = 100
         
@@ -47,7 +52,7 @@ final class SearchPhotosViewModelTests: XCTestCase {
         XCTAssertEqual(expectedCount, actualCount)
     }
     
-    func testSearchPhotos() {
+    func testSearchPhotosCount() {
         // Given
         let expectedCount = 100
         
@@ -61,7 +66,7 @@ final class SearchPhotosViewModelTests: XCTestCase {
             }
         })
         
-        viewModel.seachText("Test")
+        viewModel.searchText("Test")
         
         // Then
         wait(for: [expectation], timeout: 10)
@@ -69,14 +74,14 @@ final class SearchPhotosViewModelTests: XCTestCase {
         XCTAssertEqual(expectedCount, actualCount)
     }
     
-    func testRecentSearchPhotos() {
+    func testRecentSearchText() {
         // Given
         let expected = "Test"
         
         // When
         var actual = ""
         
-        viewModel.seachText("Test")
+        viewModel.searchText("Test")
         actual = viewModel.recentSearch.first(where: {$0 == expected })!
         
         // Then
@@ -84,12 +89,12 @@ final class SearchPhotosViewModelTests: XCTestCase {
     }
     
     
-    func testLoadMorePhotos() {
+    func testLoadMorePhotosValidation() {
 
         let photo = Photo(id: "1", owner: "1", secret: "1", server: "1", farm: 1, title: "Test", ispublic: 1, isfriend: 0, isfamily: 0)
         
         // When
-        let actual = viewModel.loadMoreMovies(currentItem: photo, text: "")
+        let actual = viewModel.loadMorePhotos(currentItem: photo, text: "")
         
         // Then
         XCTAssertFalse(actual)

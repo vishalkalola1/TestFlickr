@@ -29,7 +29,7 @@ struct PhotosService: NetworkService {
     var queryParameters: [URLQueryItem]? {
         [URLQueryItem(name: "method", value: "flickr.photos.search"),
          URLQueryItem(name: "api_key", value: CommonMovieService.apiKey),
-         URLQueryItem(name: "format", value: CommonMovieService.formate),
+         URLQueryItem(name: "format", value: CommonMovieService.format),
          URLQueryItem(name: "nojsoncallback", value: CommonMovieService.nojsoncallback),
          URLQueryItem(name: "per_page", value: "100"),
          URLQueryItem(name: "media", value: "photos"),

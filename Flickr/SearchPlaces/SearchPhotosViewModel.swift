@@ -58,7 +58,7 @@ final class SearchPhotosViewModel: SearchPhotosViewModelProtocol {
     
     /// This function check pagination api call need to send or not and bind with view
     @discardableResult
-    func loadMoreMovies(currentItem: Photo, text: String) -> Bool {
+    func loadMorePhotos(currentItem: Photo, text: String) -> Bool {
         let isLoadingData = shouldLoadMoreData(currentItem: currentItem)
         if isLoadingData {
             fetchPhotos(text)
@@ -67,7 +67,7 @@ final class SearchPhotosViewModel: SearchPhotosViewModelProtocol {
     }
     
     /// Search text from intial page and save recent search
-    func seachText(_ text: String) {
+    func searchText(_ text: String) {
         loadStatus = LoadStatus.ready(nextPage: 1)
         self.photos = []
         fetchPhotos(text)
@@ -119,20 +119,19 @@ private extension SearchPhotosViewModel {
         
         /// Check photos has duplicate or not
         photos = contains(photos)
-        self.photos = photos
+        self.photos += photos
         
         /// Increment page if there is next page.
         self.loadStatus = page == pages ? .done : .ready(nextPage: page + 1)
     }
     
     func contains(_ photos: [Photo]) -> [Photo] {
-        var tmpPhotos: [Photo] = []
         /// ignore duplicate id and append other
-        for photo in photos {
+        return photos.compactMap { photo in
             if !(self.photos.contains(where: {$0.id == photo.id })) {
-                tmpPhotos.append(photo)
+                return photo
             }
+            return nil
         }
-        return tmpPhotos
     }
 }

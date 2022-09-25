@@ -18,7 +18,7 @@ enum CommonMovieService {
         "86860772a5b7baf5c70156a3934e55cb"
     }
     
-    static var formate: String {
+    static var format: String {
         "json"
     }
     

@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import UIKit
 
 extension View {
     func errorAlert(error: Binding<Error?>) -> some View {
