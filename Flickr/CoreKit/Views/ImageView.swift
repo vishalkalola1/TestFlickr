@@ -23,5 +23,8 @@ struct ImageView: View {
                     .resizable()
             }
         }
+        .aspectRatio(1, contentMode: .fill)
+        .clipped()
+        .cornerRadius(10)
     }
 }

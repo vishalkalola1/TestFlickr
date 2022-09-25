@@ -29,33 +29,42 @@ struct SearchPhotosView: View {
                     .focused($isTextFieldFocused)
                     .padding(8)
                     .overlay(RoundedRectangle(cornerRadius: 10.0).strokeBorder(Color.red, style: StrokeStyle(lineWidth: 1.0)))
+                if !viewModel.recentSearch.isEmpty && isTextFieldFocused {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("Recent search")
+                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                        ScrollView(.horizontal) {
+                            LazyHGrid(rows: [GridItem(.flexible())], alignment: .center) {
+                                ForEach(viewModel.recentSearch, id: \.self) { item in
+                                    Text(item)
+                                        .padding(.horizontal, 10)
+                                        .padding(.vertical, 5)
+                                        .background(Color.gray)
+                                        .foregroundColor(.white)
+                                        .clipShape(Capsule())
+                                        .onTapGesture {
+                                            queryString = item
+                                            isTextFieldFocused = false
+                                            viewModel.seachText(queryString)
+                                        }
+                                }
+                            }
+                            .padding(5)
+                        }
+                        .frame(minWidth: 0, maxWidth: .infinity, maxHeight: 40, alignment: .leading)
+                    }
+                    .frame(minWidth: 0, maxWidth: .infinity)
+                }
                 ScrollView(.vertical) {
                     LazyVGrid(columns: twoColumnGrid, alignment: .center) {
                         ForEach(viewModel.photos, id: \.id) { item in
                             ImageView(url: item.url)
-                                .aspectRatio(1, contentMode: .fill)
-                                .clipped()
-                                .cornerRadius(10)
                                 .onAppear {
                                     self.viewModel.loadMoreMovies(currentItem: item, text: queryString)
                                 }
                         }
                     }
                 }
-                .overlay(content: {
-                    if !viewModel.recentSearch.isEmpty && isTextFieldFocused && queryString == "" {
-                        List {
-                            ForEach(0..<viewModel.recentSearch.count, id: \.self) { i  in
-                                Text(viewModel.recentSearch[i])
-                                    .onTapGesture {
-                                        queryString = viewModel.recentSearch[i]
-                                        isTextFieldFocused = false
-                                        viewModel.seachText(queryString)
-                                    }
-                            }
-                        }
-                    }
-                })
             }
             .errorAlert(error: $viewModel.error)
             .padding(8)
