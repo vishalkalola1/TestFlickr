@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Define static data here
 enum CommonMovieService {
     
     static var baseURL: String {

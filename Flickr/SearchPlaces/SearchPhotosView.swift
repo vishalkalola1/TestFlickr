@@ -10,8 +10,7 @@ import SwiftUI
 struct SearchPhotosView: View {
     
     @StateObject var viewModel = SearchPhotosViewModel()
-
-    @State var queryString = ""
+    @State private var queryString = ""
     @FocusState private var isTextFieldFocused: Bool
     
     private let twoColumnGrid = [
@@ -22,53 +21,66 @@ struct SearchPhotosView: View {
     var body: some View {
         Navigation(title: viewModel.title, style: .inline) {
             VStack {
-                TextField("Search here....", text: $queryString)
-                    .onSubmit {
-                        viewModel.seachText(queryString)
-                    }
-                    .focused($isTextFieldFocused)
-                    .padding(8)
-                    .overlay(RoundedRectangle(cornerRadius: 10.0).strokeBorder(Color.red, style: StrokeStyle(lineWidth: 1.0)))
+                searchField
                 if !viewModel.recentSearch.isEmpty && isTextFieldFocused {
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("Recent search")
-                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-                        ScrollView(.horizontal) {
-                            LazyHGrid(rows: [GridItem(.flexible())], alignment: .center) {
-                                ForEach(viewModel.recentSearch, id: \.self) { item in
-                                    Text(item)
-                                        .padding(.horizontal, 10)
-                                        .padding(.vertical, 5)
-                                        .background(Color.gray)
-                                        .foregroundColor(.white)
-                                        .clipShape(Capsule())
-                                        .onTapGesture {
-                                            queryString = item
-                                            isTextFieldFocused = false
-                                            viewModel.seachText(queryString)
-                                        }
-                                }
-                            }
-                            .padding(5)
-                        }
-                        .frame(minWidth: 0, maxWidth: .infinity, maxHeight: 40, alignment: .leading)
-                    }
-                    .frame(minWidth: 0, maxWidth: .infinity)
+                    recentSearchView
                 }
-                ScrollView(.vertical) {
-                    LazyVGrid(columns: twoColumnGrid, alignment: .center) {
-                        ForEach(viewModel.photos, id: \.id) { item in
-                            ImageView(url: item.url)
-                                .onAppear {
-                                    self.viewModel.loadMoreMovies(currentItem: item, text: queryString)
-                                }
-                        }
-                    }
-                }
+                photogrid
             }
             .errorAlert(error: $viewModel.error)
             .padding(8)
         }
+    }
+    
+    var searchField: some View {
+        TextField("Search here....", text: $queryString)
+            .onSubmit {
+                viewModel.seachText(queryString)
+            }
+            .focused($isTextFieldFocused)
+            .padding(8)
+            .overlay(RoundedRectangle(cornerRadius: 10.0).strokeBorder(Color.red, style: StrokeStyle(lineWidth: 1.0)))
+    }
+    
+    var photogrid: some View {
+        ScrollView(.vertical) {
+            LazyVGrid(columns: twoColumnGrid, alignment: .center) {
+                ForEach(viewModel.photos, id: \.id) { item in
+                    ImageView(url: item.url)
+                        .onAppear {
+                            self.viewModel.loadMoreMovies(currentItem: item, text: queryString)
+                        }
+                }
+            }
+        }
+    }
+    
+    var recentSearchView: some View {
+        VStack(alignment: .leading, spacing: 5) {
+            Text("Recent search...")
+                .foregroundColor(.gray)
+                .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+            ScrollView(.horizontal, showsIndicators: false) {
+                LazyHGrid(rows: [GridItem(.flexible())], alignment: .center) {
+                    ForEach(viewModel.recentSearch, id: \.self) { item in
+                        Text(item)
+                            .padding(.horizontal, 10)
+                            .padding(.vertical, 5)
+                            .foregroundColor(.black)
+                            .clipShape(Capsule())
+                            .overlay(RoundedRectangle(cornerRadius: 20.0).strokeBorder(Color.red, style: StrokeStyle(lineWidth: 1.0)))
+                            .onTapGesture {
+                                queryString = item
+                                isTextFieldFocused = false
+                                viewModel.seachText(queryString)
+                            }
+                    }
+                }
+                .padding(5)
+            }
+            .frame(minWidth: 0, maxWidth: .infinity, maxHeight: 40, alignment: .leading)
+        }
+        .frame(minWidth: 0, maxWidth: .infinity)
     }
 }
 

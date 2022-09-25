@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Define here the PhotoServices Request Data
 struct PhotosService: NetworkService {
     
     var baseURL: String {
