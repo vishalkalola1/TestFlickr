@@ -19,6 +19,12 @@
 - dynamic fonts
 - Indroduce loading indicator
 - Introduce internet connectivity and failure and retry screens
-- Introduce async/await for better performance and clean architecture. 
+- Introduce async/await for better performance and clean architecture.
+- Image Cached Or might be use third party framework
+- Network API calling framework
+- Architecture
+- Error Handling
 
-##### **Notes: The project works with Xcode 14.0 and above iOS 15 (Not sure about lower version might some apple api won't work) and the language used is Swift. And Run project into simulator land you to insert user location manually.**
+##### **Notes: The project works with Xcode 14.0 and above iOS 15 (Not sure about lower version might some apple api won't work) and the language used is Swift. Must run project into simulator Or device not into swiftUI preview. SwiftUI preview can not able to open keyboard so you will not able to see recent search after search**
+
+### **Let me know if you still have difficulties to run code. or send me an email at vishalkalola196@gmail.com**
